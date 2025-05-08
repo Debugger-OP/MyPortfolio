@@ -2,6 +2,7 @@
 import React from "react";
 import { SkillsInfo } from "../../constants";
 import Tilt from "react-parallax-tilt";
+import { motion } from "framer-motion"; // Import motion from framer-motion
 
 const Skills = () => (
   <section
@@ -9,22 +10,46 @@ const Skills = () => (
     className="py-24 pb-24 px-[12vw] md:px-[7vw] lg:px-[20vw] font-sans bg-skills-gradient clip-path-custom"
   >
     {/* Section Title */}
-    <div className="text-center mb-8">
+    <motion.div
+      className="text-center mb-8"
+      initial={{ opacity: 0, y: 100 }} // Start below the screen
+      whileInView={{ opacity: 1, y: 0 }} // Move to normal position
+      transition={{
+        duration: 1.2, // Slightly longer for smoother transition
+        ease: "easeInOut", // Ease in and out for smooth transition
+      }}
+    >
       <h2 className="text-3xl sm:text-4xl font-bold text-white">SKILLS</h2>
       <div className="w-24 h-1 bg-[#8245ec] mx-auto mt-2"></div>
       <p className="text-gray-400 mt-4 text-lg font-semibold">
         A collection of my technical skills and expertise honed through various
         projects and experiences
       </p>
-    </div>
+    </motion.div>
 
     {/* Skill Categories */}
-    <div className="flex flex-wrap gap-1 lg:gap-5 py-10 justify-between">
-      {SkillsInfo.map((category) => (
-        <div
+    <motion.div
+      className="flex flex-wrap gap-1 lg:gap-5 py-10 justify-between"
+      initial={{ opacity: 0 }} // Start invisible
+      whileInView={{ opacity: 1 }} // Fade in
+      transition={{
+        duration: 1.5, // Slow fade-in
+        delay: 0.5, // Delay before cards appear
+        ease: "easeInOut", // Smooth transition
+      }}
+    >
+      {SkillsInfo.map((category, index) => (
+        <motion.div
           key={category.title}
           className="bg-gray-900 backdrop-blur-md px-6 sm:px-6 py-8 sm:py-6 mb-10 w-full sm:w-[48%] rounded-2xl border border-white 
           shadow-[0_0_20px_1px_rgba(130,69,236,0.3)]"
+          initial={{ opacity: 0, y: 100 }} // Cards start below the screen
+          whileInView={{ opacity: 1, y: 0 }} // Move to normal position when in view
+          transition={{
+            duration: 1.2, // Slow transition for smoothness
+            delay: index * 0.3, // Stagger the cards
+            ease: "easeInOut", // Smooth easing
+          }}
         >
           <h3 className="text-2xl sm:text-3xl font-semibold text-gray-400 mb-4 text-center">
             {category.title}
@@ -32,7 +57,6 @@ const Skills = () => (
 
           {/* Skill Items - 3 per row on larger screens */}
           <Tilt
-            key={category.title}
             tiltMaxAngleX={20}
             tiltMaxAngleY={20}
             perspective={1000}
@@ -58,9 +82,9 @@ const Skills = () => (
               ))}
             </div>
           </Tilt>
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   </section>
 );
 

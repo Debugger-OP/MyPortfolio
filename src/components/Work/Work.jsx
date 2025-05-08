@@ -66,43 +66,60 @@ const Work = () => {
 
       {/* Modal Container */}
       {selectedProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 p-4">
-          <div className="bg-gray-900 rounded-xl shadow-2xl lg:w-full w-[90%] max-w-3xl overflow-hidden relative">
-            <div className="flex justify-end p-4">
-              <button
-                onClick={handleCloseModal}
-                className="text-white text-3xl font-bold hover:text-purple-500"
-              >
-                &times;
-              </button>
-            </div>
-
-            <div className="flex flex-col">
-              <div className="w-full flex justify-center bg-gray-900 px-4">
-                <img
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
-                  className="lg:w-full w-[95%] object-contain rounded-xl shadow-2xl"
-                />
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-90 p-4">
+          <div className="flex min-h-full items-center justify-center py-12">
+            <div className="bg-gray-900 rounded-xl shadow-2xl lg:w-full w-[90%] max-w-3xl overflow-hidden relative">
+              {/* Close Button */}
+              <div className="flex justify-end p-4">
+                <button
+                  onClick={handleCloseModal}
+                  className="text-white text-3xl font-bold hover:text-purple-500"
+                >
+                  &times;
+                </button>
               </div>
-              <div className="lg:p-8 p-6">
-                <h3 className="lg:text-3xl font-bold text-white mb-4 text-md">
-                  {selectedProject.title}
-                </h3>
-                <p className="text-gray-400 mb-6 lg:text-base text-xs">
-                  {selectedProject.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {selectedProject.tags.map((tag, index) => (
-                    <span
-                      key={index}
-                      className="bg-[#251f38] text-xs font-semibold text-purple-500 rounded-full px-2 py-1"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+
+              {/* Modal Content Wrapper */}
+              <div className="flex flex-col h-[80vh]">
+                {/* Scrollable Content: including Image, Description, and Tags */}
+                <div
+                  className="flex-grow overflow-y-auto p-6"
+                  style={{
+                    overflowY: "auto",
+                    scrollbarWidth: "none" /* Firefox */,
+                    msOverflowStyle: "none" /* IE and Edge */,
+                  }}
+                >
+                  {/* Image Section: Full width and height */}
+                  <div className="w-full h-[300px] lg:h-[500px] flex justify-center bg-gray-900 overflow-hidden">
+                    <img
+                      src={selectedProject.image}
+                      alt={selectedProject.title}
+                      className="w-full h-full object-cover rounded-xl shadow-2xl"
+                    />
+                  </div>
+
+                  {/* Title, Description, Tags */}
+                  <h3 className="lg:text-3xl font-bold text-white mb-4 text-md">
+                    {selectedProject.title}
+                  </h3>
+                  <p className="text-gray-400 mb-6 lg:text-base text-xs">
+                    {selectedProject.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {selectedProject.tags.map((tag, index) => (
+                      <span
+                        key={index}
+                        className="bg-[#251f38] text-xs font-semibold text-purple-500 rounded-full px-2 py-1"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className="flex gap-4">
+
+                {/* Fixed Footer: View Code and View Live buttons */}
+                <div className="flex gap-4 p-6 bg-gray-800">
                   <a
                     href={selectedProject.github}
                     target="_blank"
