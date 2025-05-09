@@ -51,11 +51,6 @@ const Skills = () => (
             ease: "easeInOut", // Smooth easing
           }}
         >
-          <h3 className="text-2xl sm:text-3xl font-semibold text-gray-400 mb-4 text-center">
-            {category.title}
-          </h3>
-
-          {/* Skill Items - 3 per row on larger screens */}
           <Tilt
             tiltMaxAngleX={20}
             tiltMaxAngleY={20}
@@ -64,6 +59,12 @@ const Skills = () => (
             transitionSpeed={1000}
             gyroscope={false}
           >
+            <h3 className="text-2xl sm:text-3xl font-semibold text-gray-400 mb-4 text-center">
+              {category.title}
+            </h3>
+
+            {/* Skill Items - 3 per row on larger screens */}
+
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full">
               {category.skills.map((skill) => (
                 <div

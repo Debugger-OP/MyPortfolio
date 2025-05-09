@@ -107,9 +107,20 @@ const Contact = () => {
           {/* Send Button */}
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-purple-600 to-pink-500 py-3 text-white font-semibold rounded-md hover:opacity-90 transition"
+            className="w-full py-3 text-white font-semibold rounded-md transition relative overflow-hidden
+             bg-gradient-to-r from-purple-600 to-pink-500
+             hover:bg-transparent hover:border-[2px] hover:border-transparent
+             hover:shadow-[0_0_10px_2px_rgba(192,38,211,0.7)]
+             hover:before:opacity-100
+             border-2 border-transparent"
           >
-            Send
+            <span className="relative z-10">Send</span>
+
+            {/* Gradient Border Overlay */}
+            <span
+              className="absolute inset-0 rounded-md p-[2px] bg-gradient-to-r from-purple-600 to-pink-500 z-0
+               opacity-0 hover:opacity-100 transition-all duration-300 pointer-events-none"
+            ></span>
           </button>
         </form>
       </div>

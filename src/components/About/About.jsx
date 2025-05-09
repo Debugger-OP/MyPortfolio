@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactTypingEffect from "react-typing-effect";
 import Tilt from "react-parallax-tilt";
 import profileImage from "../../assets/profile2.png";
 import { motion } from "framer-motion";
 
 const About = () => {
+  const [initialTilt, setInitialTilt] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setInitialTilt(false); // Revert after 1s
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section
       id="about"
@@ -85,26 +94,41 @@ const About = () => {
 
         {/* Right Side */}
         <motion.div
-          className="md:w-1/2 md:pl-10 flex justify-center md:justify-end"
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
         >
-          <Tilt
-            className="w-[80vw] max-w-[20rem] sm:max-w-[24rem] md:max-w-[27rem] aspect-square border-4 border-purple-700 rounded-full"
-            tiltMaxAngleX={20}
-            tiltMaxAngleY={20}
-            perspective={1000}
-            scale={1.05}
-            transitionSpeed={1000}
-            gyroscope={false}
+          <motion.div
+            initial={{ rotateX: 0, rotateY: 0, x: 0, y: 0, scale: 1 }}
+            whileInView={{
+              rotateX: [0, 10, -10, 8, -8, 4, -4, 0],
+              rotateY: [0, -10, 10, -8, 8, -4, 4, 0],
+              x: [0, 5, -5, 4, -4, 2, -2, 0],
+              y: [0, -5, 5, -4, 4, -2, 2, 0],
+              scale: [1, 1.02, 0.98, 1.01, 0.99, 1],
+            }}
+            transition={{
+              duration: 0.5,
+              ease: "easeInOut",
+              delay: 1,
+            }}
           >
-            <img
-              src={profileImage}
-              alt="Saurav Sharma"
-              className="w-full h-full rounded-full object-cover drop-shadow-[0_10px_20px_rgba(130,69,236,0.5)]"
-            />
-          </Tilt>
+            <Tilt
+              className="w-[80vw] max-w-[20rem] sm:max-w-[24rem] md:max-w-[27rem] aspect-square border-4 border-purple-700 rounded-full"
+              tiltMaxAngleX={20}
+              tiltMaxAngleY={20}
+              perspective={1000}
+              scale={1.05}
+              transitionSpeed={1000}
+              gyroscope={false}
+            >
+              <img
+                src={profileImage}
+                alt="Saurav Sharma"
+                className="w-full h-full rounded-full object-cover drop-shadow-[0_10px_20px_rgba(130,69,236,0.5)]"
+              />
+            </Tilt>
+          </motion.div>
         </motion.div>
       </div>
     </section>
