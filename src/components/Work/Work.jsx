@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { projects } from "../../constants";
 
 const Work = () => {
@@ -11,6 +11,23 @@ const Work = () => {
   const handleCloseModal = () => {
     setSelectedProject(null);
   };
+
+  // Disable background scroll and add Escape key close
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = "hidden";
+      const handleKeyDown = (e) => {
+        if (e.key === "Escape") handleCloseModal();
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        window.removeEventListener("keydown", handleKeyDown);
+        document.body.style.overflow = "auto";
+      };
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [selectedProject]);
 
   return (
     <section
@@ -81,25 +98,24 @@ const Work = () => {
 
               {/* Modal Content Wrapper */}
               <div className="flex flex-col h-[80vh]">
-                {/* Scrollable Content: including Image, Description, and Tags */}
+                {/* Scrollable Content */}
                 <div
-                  className="flex-grow overflow-y-auto p-6"
+                  className="flex-grow overflow-y-auto p-4 sm:p-6"
                   style={{
-                    overflowY: "auto",
-                    scrollbarWidth: "none" /* Firefox */,
-                    msOverflowStyle: "none" /* IE and Edge */,
+                    scrollbarWidth: "none",
+                    msOverflowStyle: "none",
                   }}
                 >
-                  {/* Image Section: Full width and height */}
+                  {/* Image */}
                   <div className="w-full h-[300px] lg:h-[500px] flex justify-center bg-gray-900 overflow-hidden">
                     <img
                       src={selectedProject.image}
                       alt={selectedProject.title}
-                      className="w-full h-full object-cover rounded-xl shadow-2xl"
+                      className="w-full h-full object-contain sm:object-cover rounded-xl shadow-2xl"
                     />
                   </div>
 
-                  {/* Title, Description, Tags */}
+                  {/* Text */}
                   <h3 className="lg:text-3xl font-bold text-white mb-4 text-md">
                     {selectedProject.title}
                   </h3>
@@ -118,7 +134,7 @@ const Work = () => {
                   </div>
                 </div>
 
-                {/* Fixed Footer: View Code and View Live buttons */}
+                {/* Footer buttons */}
                 <div className="flex gap-4 p-6 bg-gray-800">
                   <a
                     href={selectedProject.github}
