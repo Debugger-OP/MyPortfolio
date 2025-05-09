@@ -5,6 +5,20 @@ import profileImage from "../../assets/profile2.png";
 import { motion } from "framer-motion"; // Import motion from framer-motion
 
 const About = () => {
+  const [manualTilt, setManualTilt] = useState({ x: 0, y: 0 });
+  const [manualMode, setManualMode] = useState(true);
+
+  useEffect(() => {
+    // Trigger a one-time shake effect
+    setManualTilt({ x: 15, y: -15 });
+
+    const timeout = setTimeout(() => {
+      setManualTilt({ x: 0, y: 0 });
+      setManualMode(false); // Switch to normal interaction
+    }, 500);
+
+    return () => clearTimeout(timeout);
+  }, []);
   return (
     <section
       id="about"
@@ -90,9 +104,9 @@ const About = () => {
         {/* Right Side */}
         <motion.div
           className="md:w-1/2 md:pl-10 flex justify-center md:justify-end"
-          initial={{ opacity: 0, y: 100 }} // Start below the screen
-          whileInView={{ opacity: 1, y: 0 }} // Move to normal position
-          transition={{ duration: 1, delay: 0.5 }} // Delay to start after all the previous content (2s)
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
         >
           <Tilt
             className="w-40 h-40 sm:w-64 sm:h-64 md:w-[27rem] md:h-[27rem] border-4 border-purple-700 rounded-full"
@@ -101,7 +115,10 @@ const About = () => {
             perspective={1000}
             scale={1.05}
             transitionSpeed={1000}
-            gyroscope={true}
+            gyroscope={false} // DISABLE GYRO
+            tiltEnable={!manualMode} // Only enable hover after load
+            tiltAngleXManual={manualTilt.x}
+            tiltAngleYManual={manualTilt.y}
           >
             <img
               src={profileImage}
