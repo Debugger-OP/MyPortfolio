@@ -3,7 +3,7 @@ import ReactTypingEffect from "react-typing-effect";
 import Tilt from "react-parallax-tilt";
 import profileImage from "../../assets/profile2.png";
 import { motion } from "framer-motion"; // Import motion from framer-motion
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const About = () => {
   const [manualTilt, setManualTilt] = useState({ x: 0, y: 0 });
