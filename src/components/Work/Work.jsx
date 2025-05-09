@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { projects } from "../../constants";
 
 const Work = () => {
@@ -11,6 +11,23 @@ const Work = () => {
   const handleCloseModal = () => {
     setSelectedProject(null);
   };
+
+  // Disable background scroll and add Escape key close
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = "hidden";
+      const handleKeyDown = (e) => {
+        if (e.key === "Escape") handleCloseModal();
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        window.removeEventListener("keydown", handleKeyDown);
+        document.body.style.overflow = "auto";
+      };
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [selectedProject]);
 
   return (
     <section
