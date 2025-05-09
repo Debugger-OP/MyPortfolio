@@ -8,7 +8,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="py-4 px-[7vw] md:px-[7vw] lg:px-[20vw] scroll-mt-24 font-sans mt-16 md:mt-24 lg:mt-5"
+      className="py-4 px-[7vw] md:px-[7vw] lg:px-[20vw] overflow-x-hidden sm:overflow-x-hidden md:overflow-x-hidden scroll-mt-24 font-sans mt-16 md:mt-24 lg:mt-5"
     >
       <div className="flex flex-col-reverse md:flex-row justify-between items-center">
         {/* Left Side */}
@@ -80,7 +80,7 @@ const About = () => {
             className="inline-block text-white py-3 px-8 rounded-full mt-5 text-lg font-bold transition duration-300 transform hover:scale-105"
             style={{
               background: "linear-gradient(90deg, #8245ec, #a855f7)",
-              boxShadow: "0 0 2px #8245ec, 0 0 2px #8245ec, 0 0 40px #8245ec",
+              boxShadow: "0 0 2px #8245ec, 0 0 2px #8245ec, 0 0 14px #8245ec",
             }}
           >
             DOWNLOAD CV
