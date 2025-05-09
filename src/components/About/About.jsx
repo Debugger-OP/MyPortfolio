@@ -3,21 +3,8 @@ import ReactTypingEffect from "react-typing-effect";
 import Tilt from "react-parallax-tilt";
 import profileImage from "../../assets/profile2.png";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
 
 const About = () => {
-  const [manualTilt, setManualTilt] = useState({ x: 0, y: 0 });
-  const [manualMode, setManualMode] = useState(true);
-
-  useEffect(() => {
-    setManualTilt({ x: 15, y: -15 });
-    const timeout = setTimeout(() => {
-      setManualTilt({ x: 0, y: 0 });
-      setManualMode(false);
-    }, 500);
-    return () => clearTimeout(timeout);
-  }, []);
-
   return (
     <section
       id="about"
@@ -111,9 +98,6 @@ const About = () => {
             scale={1.05}
             transitionSpeed={1000}
             gyroscope={false}
-            tiltEnable={!manualMode}
-            tiltAngleXManual={manualTilt.x}
-            tiltAngleYManual={manualTilt.y}
           >
             <img
               src={profileImage}
