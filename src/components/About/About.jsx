@@ -2,7 +2,7 @@ import React from "react";
 import ReactTypingEffect from "react-typing-effect";
 import Tilt from "react-parallax-tilt";
 import profileImage from "../../assets/profile2.png";
-import { motion } from "framer-motion"; // Import motion from framer-motion
+import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
 const About = () => {
@@ -10,49 +10,45 @@ const About = () => {
   const [manualMode, setManualMode] = useState(true);
 
   useEffect(() => {
-    // Trigger a one-time shake effect
     setManualTilt({ x: 15, y: -15 });
-
     const timeout = setTimeout(() => {
       setManualTilt({ x: 0, y: 0 });
-      setManualMode(false); // Switch to normal interaction
+      setManualMode(false);
     }, 500);
-
     return () => clearTimeout(timeout);
   }, []);
+
   return (
     <section
       id="about"
-      className="py-4 px-[7vw] md:px-[7vw] lg:px-[20vw] scroll-mt-24 font-sans mt-16 md:mt-24 lg:mt-5"
+      className="py-4 px-[7vw] md:px-[7vw] lg:px-[20vw] scroll-mt-24 font-sans mt-16 md:mt-24 lg:mt-5 overflow-x-hidden"
     >
       <div className="flex flex-col-reverse md:flex-row justify-between items-center">
         {/* Left Side */}
         <div className="md:w-1/2 text-center md:text-left mt-8 md:mt-0">
-          {/* Name Animation */}
           <motion.h1
             className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 leading-tight"
-            initial={{ opacity: 0, y: 100 }} // Start below the screen
-            whileInView={{ opacity: 1, y: 0 }} // Move to normal position
-            transition={{ duration: 0.4 }} // Duration of the transition for the name
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
           >
             Hi, I am
           </motion.h1>
 
           <motion.h2
             className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 leading-tight"
-            initial={{ opacity: 0, y: 100 }} // Start below the screen
-            whileInView={{ opacity: 1, y: 0 }} // Move to normal position
-            transition={{ duration: 0.5, delay: 0.5 }} // Delay to start after the greeting (0.5s)
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
           >
             Saurav Sharma
           </motion.h2>
 
-          {/* Skills Heading with Typing Effect */}
           <motion.h3
             className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 text-[#8245ec] leading-tight"
-            initial={{ opacity: 0, y: 100 }} // Start below the screen
-            whileInView={{ opacity: 1, y: 0 }} // Move to normal position
-            transition={{ duration: 1, delay: 1 }} // Delay to start after the name (1s)
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1 }}
           >
             <span className="text-white">I&apos;m a </span>
             <ReactTypingEffect
@@ -72,12 +68,11 @@ const About = () => {
             />
           </motion.h3>
 
-          {/* About Me Paragraph */}
           <motion.p
             className="text-base sm:text-lg md:text-lg text-gray-400 mb-10 mt-8 leading-relaxed"
-            initial={{ opacity: 0, y: 100 }} // Start below the screen
-            whileInView={{ opacity: 1, y: 0 }} // Move to normal position
-            transition={{ duration: 1, delay: 1 }} // Delay to start after typing effect (1.5s)
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1 }}
           >
             I&apos;m a full-stack developer with 1 year of experience building
             real-world web applications using the MERN stack. Alongside web
@@ -87,7 +82,6 @@ const About = () => {
             user experiences and data-driven solutions.
           </motion.p>
 
-          {/* Resume Button */}
           <a
             href="https://drive.google.com/file/d/1_pLl2wjYVCU-wnqXIhjhYr0YC0SJXvwv/view?usp=sharing"
             target="_blank"
@@ -110,14 +104,14 @@ const About = () => {
           transition={{ duration: 1, delay: 0.5 }}
         >
           <Tilt
-            className="w-40 h-40 sm:w-64 sm:h-64 md:w-[27rem] md:h-[27rem] border-4 border-purple-700 rounded-full"
+            className="w-[80vw] max-w-[20rem] sm:max-w-[24rem] md:max-w-[27rem] aspect-square border-4 border-purple-700 rounded-full"
             tiltMaxAngleX={20}
             tiltMaxAngleY={20}
             perspective={1000}
             scale={1.05}
             transitionSpeed={1000}
-            gyroscope={false} // DISABLE GYRO
-            tiltEnable={!manualMode} // Only enable hover after load
+            gyroscope={false}
+            tiltEnable={!manualMode}
             tiltAngleXManual={manualTilt.x}
             tiltAngleYManual={manualTilt.y}
           >
