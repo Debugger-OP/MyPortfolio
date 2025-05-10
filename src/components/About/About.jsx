@@ -52,7 +52,7 @@ const About = () => {
                 "Fullstack Developer",
                 "Python Developer",
                 "Data Analyst",
-                "Coder",
+                "Coder </>",
               ]}
               speed={100}
               eraseSpeed={50}
