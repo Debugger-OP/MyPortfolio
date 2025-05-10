@@ -6,6 +6,8 @@ import { useIsLargeScreen } from "../../hooks/isLargeScreen";
 import Tilt from "react-parallax-tilt";
 
 const Education = () => {
+  const isLargeScreen = useIsLargeScreen();
+
   return (
     <section
       id="education"
@@ -64,7 +66,7 @@ const Education = () => {
               </div>
 
               {/* Content */}
-              {useIsLargeScreen ? (
+              {isLargeScreen ? (
                 <Tilt
                   tiltMaxAngleX={20}
                   tiltMaxAngleY={20}

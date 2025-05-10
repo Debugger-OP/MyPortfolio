@@ -4,7 +4,10 @@ import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
 import { useIsLargeScreen } from "../../hooks/isLargeScreen"; // path may vary
 
+// NOT useIsLargeScreen directly
+
 const Experience = () => {
+  const isLargeScreen = useIsLargeScreen();
   return (
     <section
       id="experience"
@@ -63,7 +66,7 @@ const Experience = () => {
                   className="w-full h-full object-cover rounded-full"
                 />
               </div>
-              {useIsLargeScreen ? (
+              {isLargeScreen ? (
                 <Tilt
                   tiltMaxAngleX={20}
                   tiltMaxAngleY={20}
