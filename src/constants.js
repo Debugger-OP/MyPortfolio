@@ -34,15 +34,14 @@ import dpgitm_logo from "./assets/education_logo/dpgitm_logo.png";
 import GDSSS_logo from "./assets/education_logo/GDSSS_logo.png";
 
 // Project Section Logo's
-import githubdetLogo from "./assets/work_logo/github_det.png";
+
 import csprepLogo from "./assets/work_logo/cs_prep.png";
 import movierecLogo from "./assets/work_logo/movie_rec.png";
 import taskremLogo from "./assets/work_logo/task_rem.png";
 import npmLogo from "./assets/work_logo/npm.png";
-import webverLogo from "./assets/work_logo/web_dig.png";
 import cmLogo from "./assets/work_logo/cm.png";
-import imagesearchLogo from "./assets/work_logo/image_search.png";
 import removebgLogo from "./assets/work_logo/remove_bg.png";
+import JobHuntLogo from "./assets/work_logo/JobHunt.png";
 
 export const SkillsInfo = [
   {
@@ -160,7 +159,7 @@ export const projects = [
     title: "GitHub Profile Detective",
     description:
       "A powerful and user-friendly React.js application designed to uncover and showcase detailed GitHub profile information. Simply enter a GitHub username, and the app fetches comprehensive data, including profile stats, repositories, followers, and contributions. The intuitive interface ensures a seamless experience, making it a must-visit tool for developers and recruiters.",
-    image: githubdetLogo,
+    image: JobHuntLogo,
     tags: ["HTML", "CSS", "JavaScript", "React JS", "API"],
     github:
       "https://github.com/codingmastr/GitHub-Profile-Search-App-Using-React-JS",
@@ -214,18 +213,9 @@ export const projects = [
     github: "https://github.com/codingmastr/Task-Reminder-Tool",
     webapp: "chrome://extensions/?id=kngheeibjnnidhfoomkpnbeghackheci",
   },
+
   {
     id: 5,
-    title: "Webverse Digital",
-    description:
-      "The official website for Webverse Digital, a creative digital marketing agency. Built using HTML, CSS, and JavaScript, it features visually appealing animations and a clean design to showcase the agency's services.",
-    image: webverLogo,
-    tags: ["HTML", "CSS", "JavaScript", "Framer Motion"],
-    github: "https://github.com/codingmastr/Webverse-Digital",
-    webapp: "https://webversedigital.com/",
-  },
-  {
-    id: 6,
     title: "Coding Master",
     description:
       "An ed-tech platform where users can access tech and coding-related blogs, notes, interview questions, e-books, and premium content with payment integration. Built with full-stack technologies for a seamless learning experience.",
@@ -235,17 +225,7 @@ export const projects = [
     webapp: "https://codingmasterweb.in/",
   },
   {
-    id: 7,
-    title: "Image Search App",
-    description:
-      "A React.js-based image search application that allows users to search and download high-quality images from the web. Built using external APIs to ensure a vast library of results for various queries.",
-    image: imagesearchLogo,
-    tags: ["React JS", "API", "Search Feature", "CSS", "Javascript"],
-    github: "https://github.com/codingmastr/Image-Search-App",
-    webapp: "https://imagsearch.netlify.app/",
-  },
-  {
-    id: 8,
+    id: 6,
     title: "Image Background Remover",
     description:
       "An efficient background removal app built with React.js and API integration. Users can upload any image, remove the background, and download the transparent version for further use.",

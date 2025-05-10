@@ -2,6 +2,7 @@ import React from "react";
 import { experiences } from "../../constants";
 import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
+import { useIsLargeScreen } from "../../hooks/isLargeScreen"; // path may vary
 
 const Experience = () => {
   return (
@@ -39,6 +40,7 @@ const Experience = () => {
           const animationDirection = isEven ? { x: 100 } : { x: -100 };
 
           return (
+            //cards
             <motion.div
               key={experience.id}
               className={`flex flex-col sm:flex-row items-center mb-16 ${
@@ -61,19 +63,64 @@ const Experience = () => {
                   className="w-full h-full object-cover rounded-full"
                 />
               </div>
+              {useIsLargeScreen ? (
+                <Tilt
+                  tiltMaxAngleX={20}
+                  tiltMaxAngleY={20}
+                  perspective={1000}
+                  scale={1.08}
+                  transitionSpeed={1000}
+                  gyroscope={false}
+                >
+                  {/* Content Section */}
+                  <div
+                    className={`w-full sm:max-w-md p-4 sm:p-8 rounded-2xl shadow-2xl border border-white bg-gray-900 backdrop-blur-md shadow-2xl ${
+                      isEven ? "sm:ml-55 mr-55" : "sm:mr-55 ml-55"
+                    } transform transition-transform duration-300 hover:scale-105`}
+                  >
+                    <div className="flex items-center space-x-6">
+                      <div className="w-16 h-16 bg-white rounded-md overflow-hidden">
+                        <img
+                          src={experience.img}
+                          alt={experience.company}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="flex flex-col justify-between">
+                        <div>
+                          <h3 className="text-xl sm:text-2xl font-semibold text-white">
+                            {experience.role}
+                          </h3>
+                          <h4 className="text-md sm:text-sm text-gray-300">
+                            {experience.company}
+                          </h4>
+                        </div>
+                        <p className="text-sm text-gray-500 mt-2">
+                          {experience.date}
+                        </p>
+                      </div>
+                    </div>
 
-              <Tilt
-                tiltMaxAngleX={20}
-                tiltMaxAngleY={20}
-                perspective={1000}
-                scale={1.08}
-                transitionSpeed={1000}
-                gyroscope={false}
-              >
-                {/* Content Section */}
+                    <p className="mt-4 text-gray-400">{experience.desc}</p>
+                    <div className="mt-4">
+                      <h5 className="font-medium text-white">Skills:</h5>
+                      <ul className="flex flex-wrap mt-2">
+                        {experience.skills.map((skill, i) => (
+                          <li
+                            key={i}
+                            className="bg-[#8245ec] text-gray-300 px-4 py-1 text-xs sm:text-sm rounded-lg mr-2 mb-2 border border-gray-400"
+                          >
+                            {skill}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </Tilt>
+              ) : (
                 <div
                   className={`w-full sm:max-w-md p-4 sm:p-8 rounded-2xl shadow-2xl border border-white bg-gray-900 backdrop-blur-md shadow-2xl ${
-                    isEven ? "sm:ml-55 ml-55" : "sm:mr-55 ml-55"
+                    isEven ? "sm:ml-55 mr-55" : "sm:mr-55 ml-55"
                   } transform transition-transform duration-300 hover:scale-105`}
                 >
                   <div className="flex items-center space-x-6">
@@ -114,7 +161,7 @@ const Experience = () => {
                     </ul>
                   </div>
                 </div>
-              </Tilt>
+              )}
             </motion.div>
           );
         })}
